@@ -1,5 +1,7 @@
 package com.example.WebApplication.entity;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import javax.persistence.*;
 
 @Entity
