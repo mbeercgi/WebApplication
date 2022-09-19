@@ -3,18 +3,18 @@ package com.example.WebApplication.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "dual")
+@Table/*(name = "dapaadmin.ulm_gruppen")*/(schema = "dapaadmin" , name = "ulm_gruppen")
 public class Dual {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String dummy;
+    private int bdf_kz;
 
-    public String getDummy() {
-        return dummy;
+    public int getBdf_kz() {
+        return bdf_kz;
     }
 
-    public void setDummy(String dummy) {
-        this.dummy = dummy;
+    public void setBdf_kz(int bdf_kz) {
+        this.bdf_kz = bdf_kz;
     }
 }
 
