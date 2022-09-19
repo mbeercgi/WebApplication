@@ -12,6 +12,15 @@ public class MaStamm {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String anmeldename;
 
+    public String getAnmeldename() {
+        return anmeldename;
+    }
+
+    public void setAnmeldename(String anmeldename) {
+        this.anmeldename = anmeldename;
+    }
+}
+
    /* private String abteilung;
 
     private int bdf_kz;
@@ -40,15 +49,9 @@ public class MaStamm {
 
     public void setAbteilung(String abteilung) {
         this.abteilung = abteilung; */
-    }
 
-    public String getAnmeldename() {
-        return anmeldename;
-    }
 
-    public void setAnmeldename(String anmeldename) {
-        this.anmeldename = anmeldename;
-    }
+
 
    /* public int getBdf_kz() {
         return bdf_kz;
@@ -201,7 +204,7 @@ public class MaStamm {
     public void setGlobal_user_id(int global_user_id) {
         this.global_user_id = global_user_id;
     }*/
-}
+
 
 
 // dapaadmin.ma_stamm
