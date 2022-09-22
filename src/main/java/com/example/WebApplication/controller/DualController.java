@@ -2,6 +2,7 @@ package com.example.WebApplication.controller;
 
 import com.example.WebApplication.entity.Dual;
 import com.example.WebApplication.repository.DualRepository;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
