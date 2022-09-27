@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class MaStamm {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private String anmeldename;
 
