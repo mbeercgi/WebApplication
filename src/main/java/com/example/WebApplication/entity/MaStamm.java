@@ -9,10 +9,14 @@ import javax.persistence.*;
 public class MaStamm {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
     private String anmeldename;
 
+    @Column
     private String name;
+    @Column
+    private String vorname;
 
     public String getAnmeldename() {
         return anmeldename;
@@ -29,6 +33,14 @@ public class MaStamm {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getVorname() {
+        return vorname;
+    }
+
+    public void setVorname(String vorname) {
+        this.vorname = vorname;
+    }
 }
 
     /*
@@ -37,11 +49,11 @@ public class MaStamm {
     private int email_adresse_nr;
     private String gruppe_kz;
     private int kostenstelle_nr;
-    private String name;
+
     private int personal_nr;
     private int telefon_nr;
     private int ungueltig_kz;
-    private String vorname;
+
     private int wg_ft_kz;
     private int wg_ot_nr;
     private int sap_abte;
