@@ -1,6 +1,8 @@
 package com.example.WebApplication.service;
 
 import com.example.WebApplication.entity.MaStamm;
+import com.example.WebApplication.repository.EmailRepository;
+import com.example.WebApplication.repository.GruppenberechtigungRepository;
 import com.example.WebApplication.repository.MaStammRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,14 @@ public class MaStammService {
     @Autowired
     MaStammRepository maStammRepository;
     //getting all mastamm record by using the method findaAll() of CrudRepository
+
+    @Autowired
+    private EmailRepository emailRepository;
+
+    @Autowired
+    private GruppenberechtigungRepository gruppenberechtigungRepository;
+
+
     public List<MaStamm> getAllMaStamm(){
         List<MaStamm> MaStamm = new ArrayList<MaStamm>();
         maStammRepository.findAll().forEach(maStamm1 -> MaStamm.add(maStamm1));

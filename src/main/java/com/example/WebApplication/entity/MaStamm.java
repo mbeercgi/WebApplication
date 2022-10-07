@@ -4,10 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.springframework.data.repository.query.Param;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity(name = "MaStamm")
 @Table(schema= "einkauf" , name = "ma_stamm")
@@ -15,7 +12,7 @@ import java.util.Set;
 public class MaStamm {
 
     @Id
-    @Column(columnDefinition = "varchar2(30)", nullable = false)
+    @Column(columnDefinition = "varchar2(30)", insertable = false, updatable = false)
     private String anmeldename;
 
     @Column(columnDefinition = "varchar2(30)", nullable = true)
@@ -105,25 +102,25 @@ public class MaStamm {
     @JoinColumn(name = "email_adresse_nr")
     private Email email;
 
-    @OneToMany(
-            targetEntity = MaStamm.class,
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
-            orphanRemoval = true
-    )
-    private List<Gruppenberechtigung> rollen = new ArrayList<>();
+   /* @OneToMany(mappedBy = "maStamm")
+    @JoinColumn(name = "anmeldename") //anmeldename muss evtl wieder weg, weil gruppenberechtigung kein KF zu mastamm aht
+    private Set<Gruppenberechtigung> gruppenberechtigung = new HashSet<Gruppenberechtigung>();
+*/
+    @OneToMany
+    @JoinColumn(name = "anmeldename")
+    private List<Gruppenberechtigung> berechtigungen;
 
 
 
     //###################### GETTER / SETTER #############################################################################
 
 
-    public List<Gruppenberechtigung> getGruppenberechtigung() {
-        return rollen;
+    public List<Gruppenberechtigung> getBerechtigungen() {
+        return berechtigungen;
     }
 
-    public void setGruppenberechtigung(List<Gruppenberechtigung> gruppenberechtigung) {
-        this.rollen = gruppenberechtigung;
+    public void setBerechtigungen(List<Gruppenberechtigung> berechtigungen) {
+        this.berechtigungen = berechtigungen;
     }
 
     public Email getEmail() {

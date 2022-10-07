@@ -1,6 +1,8 @@
 package com.example.WebApplication.controller;
 
 import com.example.WebApplication.entity.MaStamm;
+import com.example.WebApplication.repository.EmailRepository;
+import com.example.WebApplication.repository.GruppenberechtigungRepository;
 import com.example.WebApplication.repository.MaStammRepository;
 import com.example.WebApplication.service.MaStammService;
 import org.apache.catalina.User;
@@ -51,6 +53,7 @@ public class MaStammController {
         maStammService.saveOrUpdate(maStamm);
         return maStamm;
     }
+
 }
 
 

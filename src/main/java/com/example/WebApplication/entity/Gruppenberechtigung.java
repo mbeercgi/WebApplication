@@ -8,7 +8,7 @@ import java.util.Date;
 public class Gruppenberechtigung {
 
     @Id
-    @Column
+    @Column(nullable = false, insertable = false, updatable = false)
     private String anmeldename;
 
     @Column
@@ -30,12 +30,14 @@ public class Gruppenberechtigung {
     //@JoinColumn(name = "anmeldename")
     //private MaStamm maStamm;
 
-    public Gruppenberechtigung(int bdf_kz){
+
+   /* public Gruppenberechtigung(int bdf_kz){
         this.bdf_kz = bdf_kz;
-    }
+    }*/
+
+
 
     // ###################################################################################
-
 
 
 
