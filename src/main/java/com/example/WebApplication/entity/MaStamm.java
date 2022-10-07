@@ -1,18 +1,26 @@
 package com.example.WebApplication.entity;
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.springframework.data.repository.query.Param;
 
-@Entity
-@Table(schema= "dapaadmin" , name = "ma_stamm")
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Set;
+
+@Entity(name = "MaStamm")
+@Table(schema= "einkauf" , name = "ma_stamm")
+//@SecondaryTable(schema = "einkauf" , name = "email_adresse", pkJoinColumns = {@PrimaryKeyJoinColumn(name = "email_adresse_nr", referencedColumnName="email_adresse_nr")})
 public class MaStamm {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "varchar2(30)", nullable = false)
     private String anmeldename;
 
     @Column(columnDefinition = "varchar2(30)", nullable = true)
     private String name;
+
     @Column(columnDefinition = "varchar2(30)", nullable = true)
     private String vorname;
 
@@ -22,7 +30,16 @@ public class MaStamm {
     @Column(columnDefinition = "number(2) default '0'", nullable = false)
     private Integer bdf_kz;
 
-    @Column(columnDefinition = "number(6)", nullable = true)
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "email_nr_generator"
+    )
+    @SequenceGenerator(
+            name = "email_nr_generator",
+            schema = "einkauf",
+            sequenceName = "seq_email_adresse_nr.nextVal"
+    )
+    @Column(columnDefinition = "number(6)", nullable = true, insertable = false, updatable = false)
     private Integer email_adresse_nr;
 
     @Column(columnDefinition = "varchar2(30)", nullable = true)
@@ -52,8 +69,8 @@ public class MaStamm {
     @Column(columnDefinition = "varchar2(8)", nullable = true)
     private String sap_abteilung;
 
-   // @Column(columnDefinition = "date", nullable = true)
-  //  private int letzte_aenderung_datum;
+    @Column(columnDefinition = "date", nullable = true)
+    private Date letzte_aenderung_datum;
 
     @Column(columnDefinition = "number(1) default '0'", nullable = false)
     private Integer multi_session_kzf;
@@ -73,6 +90,49 @@ public class MaStamm {
     @Column(columnDefinition = "varchar2(100)", nullable = true)
     private String global_user_id;
 
+
+    //@OneToOne(cascade = CascadeType.ALL)
+    //@JoinColumn(name = "email_adresse_nr", referencedColumnName = "email_adresse_nr")
+    //private Email email_adresse;
+
+
+    //@JsonBackReference
+    //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    //@JoinColumn(name = "email_adresse_nr", referencedColumnName = "email_adresse_nr") //name ist der foreignkey zur anderen Tabelle
+    //private Email email;
+
+    @OneToOne
+    @JoinColumn(name = "email_adresse_nr")
+    private Email email;
+
+    @OneToMany(
+            targetEntity = MaStamm.class,
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            orphanRemoval = true
+    )
+    private List<Gruppenberechtigung> rollen = new ArrayList<>();
+
+
+
+    //###################### GETTER / SETTER #############################################################################
+
+
+    public List<Gruppenberechtigung> getGruppenberechtigung() {
+        return rollen;
+    }
+
+    public void setGruppenberechtigung(List<Gruppenberechtigung> gruppenberechtigung) {
+        this.rollen = gruppenberechtigung;
+    }
+
+    public Email getEmail() {
+        return email;
+    }
+
+    public void setEmail(Email email) {
+        this.email = email;
+    }
 
     public String getAnmeldename() {
         return anmeldename;
@@ -114,7 +174,8 @@ public class MaStamm {
         this.bdf_kz = bdf_kz;
     }
 
-    public Integer getEmail_adresse_nr() {
+
+   public Integer getEmail_adresse_nr() {
         return email_adresse_nr;
     }
 
@@ -232,5 +293,13 @@ public class MaStamm {
 
     public void setGlobal_user_id(String global_user_id) {
         this.global_user_id = global_user_id;
+    }
+
+    public Date getLetzte_aenderung_datum() {
+        return letzte_aenderung_datum;
+    }
+
+    public void setLetzte_aenderung_datum(Date letzte_aenderung_datum) {
+        this.letzte_aenderung_datum = letzte_aenderung_datum;
     }
 }
