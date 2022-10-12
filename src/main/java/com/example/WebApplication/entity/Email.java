@@ -1,31 +1,29 @@
 package com.example.WebApplication.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
+
 
 @Entity
 @Table(schema = "einkauf" , name = "email_adresse")
 public class Email {
     @Id
-    @Column(name = "email_adresse_nr")
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "email_nr_generator"
+    )
+    @SequenceGenerator(
+            name = "email_nr_generator",
+            allocationSize=1,
+            sequenceName = "einkauf.seq_email_adresse_nr")
+    @Column(name = "email_adresse_nr", columnDefinition = "number(6)")
     public Integer email_adresse_nr;
 
-    @Column(insertable = false, updatable = false)
+    @Column(nullable = false)
     public String email_adresse;
-
-   //@OneToOne(mappedBy = "email_adresse")
-   //private MaStamm ma_stamm;
-
-    //@JsonManagedReference
-    //@OneToOne(mappedBy = "email_adresse_nr"/*, cascade = CascadeType.ALL, orphanRemoval = true*/)
-    //private MaStamm ma_stamm;
-        //mapped by muss hier bei Email stehen ; der mappedby name ist mit der anderen entitie verbunden bei private Email "email"
 
 
 
     // ######################################################################################
-
 
 
     public Integer getEmail_adresse_nr() {
@@ -43,10 +41,5 @@ public class Email {
     public void setEmail_adresse(String email_adresse) {
         this.email_adresse = email_adresse;
     }
+
 }
-
-//@Entity: wird genutzt, damit Spring die Datenbankverwaltung übernimmt und wir
-//durch Java Klassen unsere Datenbanktabellen darstellen können
-
-
-// dapaadmin.ma_stamm

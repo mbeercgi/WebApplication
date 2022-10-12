@@ -1,9 +1,13 @@
 package com.example.WebApplication.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.hibernate.sql.Select;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import javax.persistence.*;
+import javax.persistence.criteria.From;
+import javax.persistence.criteria.Join;
 import java.util.*;
 
 @Entity(name = "MaStamm")
@@ -27,17 +31,9 @@ public class MaStamm {
     @Column(columnDefinition = "number(2) default '0'", nullable = false)
     private Integer bdf_kz;
 
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "email_nr_generator"
-    )
-    @SequenceGenerator(
-            name = "email_nr_generator",
-            schema = "einkauf",
-            sequenceName = "seq_email_adresse_nr.nextVal"
-    )
-    @Column(columnDefinition = "number(6)", nullable = true, insertable = false, updatable = false)
-    private Integer email_adresse_nr;
+
+    //@Column(columnDefinition = "number(6)", nullable = true, insertable = false, updatable = false)
+    // private Integer email_adresse_nr;
 
     @Column(columnDefinition = "varchar2(30)", nullable = true)
     private String gruppe_kz;
@@ -87,6 +83,9 @@ public class MaStamm {
     @Column(columnDefinition = "varchar2(100)", nullable = true)
     private String global_user_id;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "email_adresse_nr")
+    private Email email_adresse;
 
     //@OneToOne(cascade = CascadeType.ALL)
     //@JoinColumn(name = "email_adresse_nr", referencedColumnName = "email_adresse_nr")
@@ -98,37 +97,31 @@ public class MaStamm {
     //@JoinColumn(name = "email_adresse_nr", referencedColumnName = "email_adresse_nr") //name ist der foreignkey zur anderen Tabelle
     //private Email email;
 
-    @OneToOne
+   /* @OneToOne     Funktionierender Code jedoch mit fehler durch mehrere zeilen für eine ID
     @JoinColumn(name = "email_adresse_nr")
-    private Email email;
+    private Email email; */
 
-   /* @OneToMany(mappedBy = "maStamm")
-    @JoinColumn(name = "anmeldename") //anmeldename muss evtl wieder weg, weil gruppenberechtigung kein KF zu mastamm aht
-    private Set<Gruppenberechtigung> gruppenberechtigung = new HashSet<Gruppenberechtigung>();
-*/
+    /*@ManyToOne(targetEntity = Email.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "email_adresse_nr")
+    private Email email;*/
+
+   /* wird nicht genutzt wegen zu langer ladezeit. die Infos ziehen wir erst in der detailansicht
     @OneToMany
     @JoinColumn(name = "anmeldename")
     private List<Gruppenberechtigung> berechtigungen;
+*/
 
 
 
     //###################### GETTER / SETTER #############################################################################
 
 
-    public List<Gruppenberechtigung> getBerechtigungen() {
-        return berechtigungen;
+    public Email getEmail_adresse() {
+        return email_adresse;
     }
 
-    public void setBerechtigungen(List<Gruppenberechtigung> berechtigungen) {
-        this.berechtigungen = berechtigungen;
-    }
-
-    public Email getEmail() {
-        return email;
-    }
-
-    public void setEmail(Email email) {
-        this.email = email;
+    public void setEmail_adresse(Email email_adresse) {
+        this.email_adresse = email_adresse;
     }
 
     public String getAnmeldename() {
@@ -171,14 +164,6 @@ public class MaStamm {
         this.bdf_kz = bdf_kz;
     }
 
-
-   public Integer getEmail_adresse_nr() {
-        return email_adresse_nr;
-    }
-
-    public void setEmail_adresse_nr(Integer email_adresse_nr) {
-        this.email_adresse_nr = email_adresse_nr;
-    }
 
     public String getGruppe_kz() {
         return gruppe_kz;
