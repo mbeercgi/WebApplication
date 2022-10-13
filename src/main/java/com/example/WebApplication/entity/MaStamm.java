@@ -31,10 +31,6 @@ public class MaStamm {
     @Column(columnDefinition = "number(2) default '0'", nullable = false)
     private Integer bdf_kz;
 
-
-    //@Column(columnDefinition = "number(6)", nullable = true, insertable = false, updatable = false)
-    // private Integer email_adresse_nr;
-
     @Column(columnDefinition = "varchar2(30)", nullable = true)
     private String gruppe_kz;
 
@@ -71,8 +67,8 @@ public class MaStamm {
     @Column(columnDefinition = "number(1) default '0'", nullable = true)
     private Integer geloescht_kzf;
 
-   // @Column(columnDefinition = "date default 'sysdate'", nullable = true)
-   // private int letzter_login_datum;
+    @Column(columnDefinition = "date default 'sysdate'", nullable = true)
+    private Date letzter_login_datum;
 
     @Column(columnDefinition = "number(2) default '1'", nullable = true)
     private Integer taetigkeit_kz;
@@ -86,30 +82,6 @@ public class MaStamm {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "email_adresse_nr")
     private Email email_adresse;
-
-    //@OneToOne(cascade = CascadeType.ALL)
-    //@JoinColumn(name = "email_adresse_nr", referencedColumnName = "email_adresse_nr")
-    //private Email email_adresse;
-
-
-    //@JsonBackReference
-    //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    //@JoinColumn(name = "email_adresse_nr", referencedColumnName = "email_adresse_nr") //name ist der foreignkey zur anderen Tabelle
-    //private Email email;
-
-   /* @OneToOne     Funktionierender Code jedoch mit fehler durch mehrere zeilen für eine ID
-    @JoinColumn(name = "email_adresse_nr")
-    private Email email; */
-
-    /*@ManyToOne(targetEntity = Email.class, fetch = FetchType.LAZY)
-    @JoinColumn(name = "email_adresse_nr")
-    private Email email;*/
-
-   /* wird nicht genutzt wegen zu langer ladezeit. die Infos ziehen wir erst in der detailansicht
-    @OneToMany
-    @JoinColumn(name = "anmeldename")
-    private List<Gruppenberechtigung> berechtigungen;
-*/
 
 
 
@@ -283,5 +255,13 @@ public class MaStamm {
 
     public void setLetzte_aenderung_datum(Date letzte_aenderung_datum) {
         this.letzte_aenderung_datum = letzte_aenderung_datum;
+    }
+
+    public Date getLetzter_login_datum() {
+        return letzter_login_datum;
+    }
+
+    public void setLetzter_login_datum(Date letzter_login_datum) {
+        this.letzter_login_datum = letzter_login_datum;
     }
 }

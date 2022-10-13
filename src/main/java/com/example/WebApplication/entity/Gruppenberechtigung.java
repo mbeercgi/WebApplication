@@ -26,18 +26,7 @@ public class Gruppenberechtigung {
     @Column
     private int verdichtung_kz;
 
-    //@ManyToOne
-    //@JoinColumn(name = "anmeldename")
-    //private MaStamm maStamm;
 
-
-   /* public Gruppenberechtigung(int bdf_kz){
-        this.bdf_kz = bdf_kz;
-    }*/
-
-
-
-    // ###################################################################################
 
 
 

@@ -4,16 +4,18 @@ import com.example.WebApplication.entity.Gruppenberechtigung;
 import com.example.WebApplication.repository.GruppenberechtigungRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.yaml.snakeyaml.events.Event;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class GruppenberechtigungService {
 
     @Autowired
     GruppenberechtigungRepository gruppenberechtigungRepository;
-    //getting all mastamm record by using the method findaAll() of CrudRepository
 
 
     public List<Gruppenberechtigung> getAllGruppenberechtigung(){
@@ -23,8 +25,10 @@ public class GruppenberechtigungService {
     }
 
     //getting a specific record by using the method findById() of CrudRepository
-    public Gruppenberechtigung getGruppenberechtigungByID(String anmeldename){
-        return gruppenberechtigungRepository.findById(anmeldename).get();
+    public List<Gruppenberechtigung> getGruppenberechtigungByID(String anmeldename){
+       List<Gruppenberechtigung> Gruppenberechtigung = new ArrayList<>();
+       gruppenberechtigungRepository.findAllById(Collections.singleton(anmeldename)).forEach(gruppenberechtigung -> Gruppenberechtigung.add(gruppenberechtigung));
+       return Gruppenberechtigung;
     }
 
     //saving a specific record by using the method save() of CrudRepository

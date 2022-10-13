@@ -1,16 +1,8 @@
 package com.example.WebApplication.controller;
 
 import com.example.WebApplication.entity.MaStamm;
-import com.example.WebApplication.repository.EmailRepository;
-import com.example.WebApplication.repository.GruppenberechtigungRepository;
-import com.example.WebApplication.repository.MaStammRepository;
 import com.example.WebApplication.service.MaStammService;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -41,7 +33,7 @@ public class MaStammController {
     }
 
     //creating post mapping that post the book detail in the database
-    @PostMapping("mastamm")
+    @PostMapping("/mastamm")
     private String saveMaStamm(@RequestBody MaStamm maStamm){
         maStammService.saveOrUpdate(maStamm);
         return maStamm.getAnmeldename();
