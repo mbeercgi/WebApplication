@@ -12,7 +12,6 @@ import java.util.*;
 
 @Entity(name = "MaStamm")
 @Table(schema= "einkauf" , name = "ma_stamm")
-//@SecondaryTable(schema = "einkauf" , name = "email_adresse", pkJoinColumns = {@PrimaryKeyJoinColumn(name = "email_adresse_nr", referencedColumnName="email_adresse_nr")})
 public class MaStamm {
 
     @Id
