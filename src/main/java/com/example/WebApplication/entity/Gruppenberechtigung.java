@@ -1,57 +1,37 @@
 package com.example.WebApplication.entity;
+import com.example.WebApplication.GruppenberechtigungPK;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity(name = "Gruppenberechtigung")
-@Table(name = "ma_gruppenberechtigung", schema = "einkauf")
+@Table(name = "MA_GRUPPENBERECHTIGUNG", schema = "einkauf")
 public class Gruppenberechtigung {
 
-    @Id
-    @Column(nullable = false, insertable = false, updatable = false)
-    private String anmeldename;
+    @EmbeddedId
+    private GruppenberechtigungPK gruppenId;
 
     @Column
-    private int bdf_kz;
+    public int kdf_toechter_kz;
 
     @Column
-    private String gruppe_kz;
+    public Date ungueltig_datum;
 
-    @Column
-    private int kdf_toechter_kz;
+    public Gruppenberechtigung(){
 
-    @Column(columnDefinition = "date")
-    private Date ungueltig_datum;
-
-    @Column
-    private int verdichtung_kz;
-
-
-
-
-
-    public String getAnmeldename() {
-        return anmeldename;
+    }
+    public Gruppenberechtigung(GruppenberechtigungPK gruppenId, int kdf_toechter_kz, Date ungueltig_datum) {
+        gruppenId = gruppenId;
+        this.kdf_toechter_kz = kdf_toechter_kz;
+        this.ungueltig_datum = ungueltig_datum;
     }
 
-    public void setAnmeldename(String anmeldename) {
-        this.anmeldename = anmeldename;
+    public GruppenberechtigungPK getGruppenId() {
+        return gruppenId;
     }
 
-    public int getBdf_kz() {
-        return bdf_kz;
-    }
-
-    public void setBdf_kz(int bdf_kz) {
-        this.bdf_kz = bdf_kz;
-    }
-
-    public String getGruppe_kz() {
-        return gruppe_kz;
-    }
-
-    public void setGruppe_kz(String gruppe_kz) {
-        this.gruppe_kz = gruppe_kz;
+    public void setGruppenId(GruppenberechtigungPK gruppenId) {
+        gruppenId = gruppenId;
     }
 
     public int getKdf_toechter_kz() {
@@ -68,13 +48,5 @@ public class Gruppenberechtigung {
 
     public void setUngueltig_datum(Date ungueltig_datum) {
         this.ungueltig_datum = ungueltig_datum;
-    }
-
-    public int getVerdichtung_kz() {
-        return verdichtung_kz;
-    }
-
-    public void setVerdichtung_kz(int verdichtung_kz) {
-        this.verdichtung_kz = verdichtung_kz;
     }
 }

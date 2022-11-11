@@ -14,15 +14,8 @@ import java.util.List;
 public class MaStammService {
     @Autowired
     MaStammRepository maStammRepository;
-    //getting all mastamm record by using the method findaAll() of CrudRepository
 
-    @Autowired
-    private EmailRepository emailRepository;
-
-    @Autowired
-    private GruppenberechtigungRepository gruppenberechtigungRepository;
-
-
+    //getting all mastamm record by using the method findAll() of CrudRepository
     public List<MaStamm> getAllMaStamm(){
         List<MaStamm> MaStamm = new ArrayList<MaStamm>();
         maStammRepository.findAll().forEach(maStamm1 -> MaStamm.add(maStamm1));

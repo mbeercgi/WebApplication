@@ -1,13 +1,5 @@
 package com.example.WebApplication.entity;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import org.hibernate.sql.Select;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-
 import javax.persistence.*;
-import javax.persistence.criteria.From;
-import javax.persistence.criteria.Join;
 import java.util.*;
 
 @Entity(name = "MaStamm")
@@ -81,7 +73,6 @@ public class MaStamm {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "email_adresse_nr")
     private Email email_adresse;
-
 
 
     //###################### GETTER / SETTER #############################################################################
@@ -263,4 +254,5 @@ public class MaStamm {
     public void setLetzter_login_datum(Date letzter_login_datum) {
         this.letzter_login_datum = letzter_login_datum;
     }
+
 }

@@ -15,25 +15,28 @@ public class MaSuche {
     private String vorname;
     private String abteilung;
 
-    private int ungueltig_kzf;
-
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "email_adresse_nr")
     @Fetch(FetchMode.JOIN)
     private Email email_adresse;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "anmeldename")
+    @Fetch(FetchMode.JOIN)
+    private DbaUsers dbausers;
 
     public MaSuche(){
 
     }
 
     // Constructor
-    public MaSuche(String anmeldename, String name, String vorname, String abteilung, Email email_adresse, int ungueltig_kzf) {
+    public MaSuche(String anmeldename, String name, String vorname, String abteilung, Email email_adresse, DbaUsers dbausers) {
         this.anmeldename = anmeldename;
         this.name = name;
         this.vorname = vorname;
         this.abteilung = abteilung;
         this.email_adresse = email_adresse;
-        this.ungueltig_kzf = ungueltig_kzf;
+        this.dbausers = dbausers;
 
     }
 
@@ -78,11 +81,7 @@ public class MaSuche {
         this.email_adresse = email_adresse;
     }
 
-    public int getUngueltig_kzf() {
-        return ungueltig_kzf;
-    }
+    public DbaUsers getDbausers() { return dbausers; }
 
-    public void setUngueltig_kzf(int ungueltig_kzf) {
-        this.ungueltig_kzf = ungueltig_kzf;
-    }
+    public void setDbausers(DbaUsers dbausers) { this.dbausers = dbausers; }
 }
