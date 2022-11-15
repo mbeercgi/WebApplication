@@ -15,6 +15,7 @@ import java.util.List;
 public class MaStammController {
     @Autowired
     MaStammService maStammService;
+    @Autowired
     MaStammRepository maStammRepository;
 
     //creating a get mapping that retrieves all the mastamm detail from the database
