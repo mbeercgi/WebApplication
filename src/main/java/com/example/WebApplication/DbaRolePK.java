@@ -10,8 +10,8 @@ public class DbaRolePK implements Serializable {
 
     @Column
     private String grantee;
-    @Column
-    private String granted_role;
+    @Column(name = "granted_role")
+    private String grantedrole;
 
     //###################### constructor
 
@@ -19,9 +19,9 @@ public class DbaRolePK implements Serializable {
 
     }
 
-    public DbaRolePK(String grantee, String granted_role) {
+    public DbaRolePK(String grantee, String grantedrole) {
         this.grantee = grantee;
-        this.granted_role = granted_role;
+        this.grantedrole = grantedrole;
     }
 
 
@@ -36,12 +36,12 @@ public class DbaRolePK implements Serializable {
         this.grantee = grantee;
     }
 
-    public String getGranted_role() {
-        return granted_role;
+    public String getGrantedrole() {
+        return grantedrole;
     }
 
-    public void setGranted_role(String granted_role) {
-        this.granted_role = granted_role;
+    public void setGrantedrole(String granted_role) {
+        this.grantedrole = granted_role;
     }
 
     //########################################## hash equal
@@ -52,11 +52,11 @@ public class DbaRolePK implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         DbaRolePK dbaRolePK = (DbaRolePK) o;
-        return Objects.equals(grantee, dbaRolePK.grantee) && Objects.equals(granted_role, dbaRolePK.granted_role);
+        return Objects.equals(grantee, dbaRolePK.grantee) && Objects.equals(grantedrole, dbaRolePK.grantedrole);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(grantee, granted_role);
+        return Objects.hash(grantee, grantedrole);
     }
 }

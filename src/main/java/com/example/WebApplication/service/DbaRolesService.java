@@ -15,4 +15,13 @@ public class DbaRolesService {
     public List<DbaRoles> findByGrantee(String grantee) {
         return dbaRolesRepository.findByIdGrantee(grantee);
     }
+
+    public void revoke_user(String anmeldename, String anwendung){
+         anwendung = anwendung.replaceAll("_ROLE", "");
+         dbaRolesRepository.revoke_user(anmeldename, anwendung);
+    }
+
+    public void grant_user(String anmeldename, String anwendung){
+        dbaRolesRepository.grant_user(anmeldename,anwendung);
+    }
 }

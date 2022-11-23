@@ -30,19 +30,19 @@ public class MaStammController {
         return maStammService.getMaStammById(anmeldename);
     }
 
-    //creating a delete mapping that deletes a specified mastamm
+    //MaStamm User löschen:
     @DeleteMapping("/mastamm/{anmeldename}")
     private void deleteMaStamm(@PathVariable("anmeldename") String anmeldename){
         maStammService.delete(anmeldename);
     }
 
-    //creating post mapping that post the book detail in the database
+
+    // MaStamm User anlegen:
     @PostMapping("/mastamm")
     private String saveMaStamm(@RequestBody MaStamm maStamm){
         maStammService.saveOrUpdate(maStamm);
         return maStamm.getAnmeldename();
     }
-
 
     @PutMapping("/mastamm/{anmeldename}")
     public ResponseEntity<MaStamm> updateMaStamm(@PathVariable String anmeldename, @RequestBody MaStamm mastammDetails){

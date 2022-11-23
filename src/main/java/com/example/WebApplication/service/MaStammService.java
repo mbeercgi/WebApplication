@@ -41,4 +41,6 @@ public class MaStammService {
     public void update(MaStamm maStamm, String anmeldename){
         maStammRepository.save(maStamm);
     }
+
+
 }
