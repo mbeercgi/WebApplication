@@ -18,6 +18,10 @@ public class GruppenberechtigungService {
         return gruppenberechtigungRepository.findByGruppenIdAnmeldename(anmeldename);
     }
 
+    public Gruppenberechtigung saveNew(Gruppenberechtigung newGruppenberechtigung) {
+        return gruppenberechtigungRepository.save(newGruppenberechtigung);
+    }
+
 
 /*
 

@@ -42,5 +42,7 @@ public class MaStammService {
         maStammRepository.save(maStamm);
     }
 
-
+    public void setGueltig(String anmeldename) {
+        maStammRepository.setGueltig(anmeldename);
+    }
 }

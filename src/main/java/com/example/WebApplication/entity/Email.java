@@ -1,5 +1,8 @@
 package com.example.WebApplication.entity;
 
+import lombok.Builder;
+import lombok.extern.jackson.Jacksonized;
+
 import javax.persistence.*;
 
 

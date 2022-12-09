@@ -1,4 +1,9 @@
 package com.example.WebApplication.entity;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.extern.jackson.Jacksonized;
+
 import javax.persistence.*;
 import java.util.*;
 

@@ -14,7 +14,7 @@ public class SendMailController {
     @Autowired
     SendMailService sendMailService;
 
-    @PostMapping("send-mail/{anmeldename}&{emailadresse}")
+    @PostMapping("send-mail/{anmeldename}&{email_adresse}")
     public void alter_user_mail(@PathVariable("anmeldename") String anmeldename, @PathVariable("email_adresse") String email_adresse){
         sendMailService.alter_user_mail(anmeldename, email_adresse);
     }

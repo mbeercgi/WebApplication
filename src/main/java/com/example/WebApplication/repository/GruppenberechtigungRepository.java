@@ -3,6 +3,7 @@ package com.example.WebApplication.repository;
 import com.example.WebApplication.GruppenberechtigungPK;
 import com.example.WebApplication.entity.Gruppenberechtigung;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

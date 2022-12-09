@@ -47,7 +47,7 @@ public class MaStammController {
     @PutMapping("/mastamm/{anmeldename}")
     public ResponseEntity<MaStamm> updateMaStamm(@PathVariable String anmeldename, @RequestBody MaStamm mastammDetails){
         MaStamm updateMaStamm = maStammRepository.findById(anmeldename)
-                .orElseThrow(() -> new UsernameNotFoundException("Der Mitarbeiter mit dem Anmeldename"+ anmeldename +"existiert nicht"));
+                .orElseThrow(() -> new UsernameNotFoundException("Der Anmeldename "+ anmeldename +" existiert nicht"));
 
         updateMaStamm.setAnmeldename(mastammDetails.getAnmeldename());
         updateMaStamm.setName(mastammDetails.getName());
@@ -74,6 +74,13 @@ public class MaStammController {
 
         return ResponseEntity.ok(updateMaStamm);
     }
+
+    @PutMapping("/set-gueltig/{anmeldename}")
+    public void setGueltig(@PathVariable("anmeldename") String anmeldename){
+        maStammService.setGueltig(anmeldename);
+    }
+
+
 }
 
 

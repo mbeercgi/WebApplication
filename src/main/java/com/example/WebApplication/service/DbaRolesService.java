@@ -22,6 +22,7 @@ public class DbaRolesService {
     }
 
     public void grant_user(String anmeldename, String anwendung){
+        anwendung = anwendung.replaceAll("_ROLE", "");
         dbaRolesRepository.grant_user(anmeldename,anwendung);
     }
 }

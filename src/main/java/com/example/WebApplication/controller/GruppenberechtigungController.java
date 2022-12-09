@@ -19,6 +19,14 @@ public class GruppenberechtigungController {
     public List<Gruppenberechtigung> getGruppenberechtigungByAnmeldename(@PathVariable(name = "anmeldename") String anmeldename){
         return gruppenberechtigungService.findByAnmeldename(anmeldename);
     }
+
+    @PostMapping("/berechtigungen")
+    Gruppenberechtigung newGruppenberechtigung(@RequestBody Gruppenberechtigung newGruppenberechtigung){
+        return gruppenberechtigungService.saveNew(newGruppenberechtigung);
+    }
+
+
+
     /*@GetMapping("/berechtigungen/{anmeldename}")
     public List<Gruppenberechtigung> getBerechtigungByAnmeldename(@PathVariable String anmeldename){
         return gruppenberechtigungService.getBerechtigungByAnmeldename(anmeldename);
