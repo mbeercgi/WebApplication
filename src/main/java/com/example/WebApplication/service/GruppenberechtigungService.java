@@ -18,9 +18,21 @@ public class GruppenberechtigungService {
         return gruppenberechtigungRepository.findByGruppenIdAnmeldename(anmeldename);
     }
 
-    public Gruppenberechtigung saveNew(Gruppenberechtigung newGruppenberechtigung) {
+    /*public Gruppenberechtigung saveNew(Gruppenberechtigung newGruppenberechtigung) {
         return gruppenberechtigungRepository.save(newGruppenberechtigung);
     }
+
+     */
+
+    /*
+    public void createGruppenberechtigung(String gruppe_kz, int bdf_kz, int kdf_toechter_kz, int verdichtung_kz, String anmeldename) {
+        gruppenberechtigungRepository.save(gruppe_kz, bdf_kz, kdf_toechter_kz, verdichtung_kz, anmeldename);
+    }
+
+     */
+
+
+
 
 
 /*

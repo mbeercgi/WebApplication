@@ -1,7 +1,6 @@
 package com.example.WebApplication;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -20,6 +19,8 @@ public class GruppenberechtigungPK implements Serializable {
 
     @Column
     public int verdichtung_kz;
+
+
 
     public GruppenberechtigungPK(){
 

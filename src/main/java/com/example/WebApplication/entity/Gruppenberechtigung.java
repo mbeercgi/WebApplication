@@ -21,7 +21,7 @@ public class Gruppenberechtigung {
 
     }
     public Gruppenberechtigung(GruppenberechtigungPK gruppenId, int kdf_toechter_kz, Date ungueltig_datum) {
-        gruppenId = gruppenId;
+        this.gruppenId = gruppenId;
         this.kdf_toechter_kz = kdf_toechter_kz;
         this.ungueltig_datum = ungueltig_datum;
     }
@@ -31,7 +31,7 @@ public class Gruppenberechtigung {
     }
 
     public void setGruppenId(GruppenberechtigungPK gruppenId) {
-        gruppenId = gruppenId;
+        this.gruppenId = gruppenId;
     }
 
     public int getKdf_toechter_kz() {
